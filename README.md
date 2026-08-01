@@ -92,6 +92,30 @@ maintains a hand-written second copy of the execution path, down to two inlined 
 helper the spec-decode path calls normally — and the same run turned up two live defects on
 the way.
 
+---
+
+## learn
+
+```
+/plugin install learn@ivetts-skills
+```
+
+Reflect on the session that just happened, and put each learning where it will actually take
+effect. Invoke it with `/learn`, *"what did we learn?"*, or when you catch yourself saying
+*"from now on..."*.
+
+The premise: an agent's memory is **recall-based**, so it works only if the right entry
+surfaces at the right moment. Often something else is a better home. The skill reflects first,
+then routes each learning through a fixed order, stopping at the first match:
+
+1. **a deterministic hook** — for a recurring mistake a check can catch, because enforcement
+   beats recall;
+2. **CLAUDE.md** — for a static fact, convention or strong preference;
+3. **a new skill** — for a reusable multi-step workflow;
+4. **discard** — one-off, already written down, or too narrow to help later.
+
+It shows you the exact change and asks before writing anything.
+
 ## Licence
 
 MIT — see [LICENCE.md](LICENCE.md).

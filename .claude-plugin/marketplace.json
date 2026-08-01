@@ -27,6 +27,27 @@
         "name": "Ivett Ördög",
         "url": "https://github.com/devill"
       }
+    },
+    {
+      "name": "learn",
+      "displayName": "Learn",
+      "description": "Reflect on the current session and route each learning to the store that will actually enforce it — a deterministic hook, CLAUDE.md, a new skill, or memory.",
+      "source": "./",
+      "skills": [
+        "./skills/learn"
+      ],
+      "strict": false,
+      "category": "workflow",
+      "tags": [
+        "reflection",
+        "memory",
+        "retrospective",
+        "claude-md"
+      ],
+      "author": {
+        "name": "Ivett Ördög",
+        "url": "https://github.com/devill"
+      }
     }
   ]
 }
