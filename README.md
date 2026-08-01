@@ -36,6 +36,20 @@ A self-contained HTML page — offline, light and dark — with:
 - the temporal-coupling overlay with a live threshold slider;
 - the comparison table, so you can see what was rejected and on what verified grounds.
 
+The diagram draws the *change*, never the system — at most six boxes a side, with the recurring
+cost accented in **before** and the mechanism that replaces it accented in **after**. This is
+the "after" half of a real recommendation, on a maze renderer whose scene can be recorded to a
+trace and rebuilt from it:
+
+![Example change diagram: a recorded material token carried through to the mesh builder](docs/example-change-diagram.svg)
+
+The recorder writes a trace line carrying `mat=beatup`. On the way back, the parser has to
+reconstruct the edge coordinate the line never stored — and the mesh builder was throwing the
+recorded material away and recomputing it from that reconstruction, which drifts 18.1% of the
+time. The accented arrow is the fix: carry `mat=` through to the builder, leaving the
+reconstructed coordinate responsible for position only. Same four boxes as the "before" panel,
+same labels, so the eye can diff them.
+
 ### How it decides
 
 **The metrics nominate, they never decide.** Churn and coupling say where change lands; only
@@ -75,22 +89,6 @@ Run it directly if you want the raw tables:
 python3 skills/hotspot-rec/scripts/forensics.py <repo>                  # what extensions are here?
 python3 skills/hotspot-rec/scripts/forensics.py <repo> --ext .ts .tsx   # analyse
 ```
-
-### Does it work?
-
-It was developed against a frozen commit of [vLLM](https://github.com/vllm-project/vllm) —
-`1f400c58b`, 21 November 2025 — chosen because the maintainers began restructuring
-`gpu_model_runner.py` immediately afterwards. Runs were blinded: the analysing agent had no web
-or issue-tracker access and was instructed to treat that date as the present, so it could not
-see the answer.
-
-An early version rated `gpu_model_runner.py` first on churn × size and then rejected it,
-because its package-boundary rule scored the whole of `vllm/v1/**` as one package and read the
-file's coupling as internal cohesion. With boundaries at adaptive depth and fan-out weighed
-properly, a blinded run reached it on the mechanism rather than the size — that warm-up
-maintains a hand-written second copy of the execution path, down to two inlined copies of a
-helper the spec-decode path calls normally — and the same run turned up two live defects on
-the way.
 
 ---
 
