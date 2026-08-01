@@ -1,20 +1,28 @@
 {
-  "name": "ordogivett-tools",
+  "name": "ivetts-skills",
   "owner": {
     "name": "Ivett Ördög",
     "url": "https://github.com/devill"
   },
-  "description": "Software design and analysis tools for Claude Code",
+  "description": "Claude Code skills by Ivett Ördög",
   "plugins": [
     {
       "name": "hotspot-rec",
       "displayName": "Hotspot recommendation",
       "description": "Tornhill-style hotspot and temporal-coupling analysis on any git repo, turned into one design improvement: a long-term goal plus the smallest meaningful step toward it.",
       "source": "./",
-      "skills": ["./skills/hotspot-rec"],
+      "skills": [
+        "./skills/hotspot-rec"
+      ],
       "strict": false,
       "category": "code-quality",
-      "tags": ["architecture", "refactoring", "code-forensics", "technical-debt", "git"],
+      "tags": [
+        "architecture",
+        "refactoring",
+        "code-forensics",
+        "technical-debt",
+        "git"
+      ],
       "author": {
         "name": "Ivett Ördög",
         "url": "https://github.com/devill"

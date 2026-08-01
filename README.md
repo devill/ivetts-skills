@@ -1,24 +1,32 @@
-# hotspot-rec
+# Ivett's skills
 
-A Claude Code skill that reads a git repository's history the way Adam Tornhill's *Your Code as
-a Crime Scene* does — change frequency against file size, temporal coupling, fan-out — and
-turns it into **one** design improvement: a long-term goal, and the smallest step toward it
-that is worth doing on its own.
+Claude Code skills, distributed as a plugin marketplace. Add it once, then install whichever
+you want:
+
+```
+/plugin marketplace add devill/ivetts-skills
+```
+
+---
+
+## hotspot-rec
+
+```
+/plugin install hotspot-rec@ivetts-skills
+```
+
+Reads a git repository's history the way Adam Tornhill's *Your Code as a Crime Scene* does —
+change frequency against file size, temporal coupling, fan-out — and turns it into **one**
+design improvement: a long-term goal, and the smallest step toward it that is worth doing on
+its own.
 
 Not a report. Not a backlog. One thing to do next, with the evidence behind it and the
 candidates it was chosen over.
 
-## Install
+Ask for it by name, or with *"where does our maintenance cost live?"*, *"run a hotspot
+analysis"*, or by naming a file you dread touching.
 
-```
-/plugin marketplace add devill/hotspot-rec
-/plugin install hotspot-rec@ordogivett-tools
-```
-
-Then ask for it: *"where does our maintenance cost live?"*, *"run a hotspot analysis"*, or name
-a file you dread touching.
-
-## What it produces
+### What it produces
 
 A self-contained HTML page — offline, light and dark — with:
 
@@ -28,7 +36,7 @@ A self-contained HTML page — offline, light and dark — with:
 - the temporal-coupling overlay with a live threshold slider;
 - the comparison table, so you can see what was rejected and on what verified grounds.
 
-## How it decides
+### How it decides
 
 **The metrics nominate, they never decide.** Churn and coupling say where change lands; only
 reading the code says why. The skill requires every candidate to be read before anything is
@@ -40,7 +48,7 @@ coupling that keeps bringing us back to this file, and do the dependencies at th
 the right way?* A codebase is healthy when a file changes for one reason and a change requires
 understanding only a small part of the whole.
 
-## The measurement
+### The measurement
 
 `scripts/forensics.py` is stdlib-only Python over `git log --numstat`, so it works on any
 language.
@@ -68,7 +76,7 @@ python3 skills/hotspot-rec/scripts/forensics.py <repo>                  # what e
 python3 skills/hotspot-rec/scripts/forensics.py <repo> --ext .ts .tsx   # analyse
 ```
 
-## Does it work?
+### Does it work?
 
 It was developed against a frozen commit of [vLLM](https://github.com/vllm-project/vllm) —
 `1f400c58b`, 21 November 2025 — chosen because the maintainers began restructuring
