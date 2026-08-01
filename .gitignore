@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 analysis.json
 rec.json
+.idea/
+.DS_Store
