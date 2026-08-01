@@ -36,19 +36,17 @@ A self-contained HTML page — offline, light and dark — with:
 - the temporal-coupling overlay with a live threshold slider;
 - the comparison table, so you can see what was rejected and on what verified grounds.
 
-The diagram draws the *change*, never the system — at most six boxes a side, with the recurring
-cost accented in **before** and the mechanism that replaces it accented in **after**. This is
-the "after" half of a real recommendation, on a maze renderer whose scene can be recorded to a
-trace and rebuilt from it:
+The coupling map, from a real run on a 3D maze renderer:
 
-![Example change diagram: a recorded material token carried through to the mesh builder](docs/example-change-diagram.svg)
+![Temporal coupling map: every line joins two files that changed in the same commit, drawn over the package map](docs/example-coupling-map.svg)
 
-The recorder writes a trace line carrying `mat=beatup`. On the way back, the parser has to
-reconstruct the edge coordinate the line never stored — and the mesh builder was throwing the
-recorded material away and recomputing it from that reconstruction, which drifts 18.1% of the
-time. The accented arrow is the fix: carry `mat=` through to the builder, leaving the
-reconstructed coordinate responsible for position only. Same four boxes as the "before" panel,
-same labels, so the eye can diff them.
+Every circle is a production file — area is lines of code, colour is commits in the window —
+and the outlined circles are packages. Every line joins two files that changed in the same
+commit. **Orange dashed** means the pair crosses a package boundary: a change the architecture
+claims is unrelated. Blue stays inside one package, where co-change is more often cohesion.
+
+This is the view on load, deliberately chaotic. In the real page a slider raises the
+co-change threshold, and what survives at the top is the coupling you actually pay for.
 
 ### How it decides
 
