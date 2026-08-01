@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+analysis.json
+rec.json
