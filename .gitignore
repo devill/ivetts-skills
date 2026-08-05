@@ -4,3 +4,4 @@ analysis.json
 rec.json
 .idea/
 .DS_Store
+.claude-channel/
