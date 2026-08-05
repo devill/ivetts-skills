@@ -112,6 +112,40 @@ then routes each learning through a fixed order, stopping at the first match:
 
 It shows you the exact change and asks before writing anything.
 
+---
+
+## build-project-review
+
+```
+/plugin install build-project-review@ivetts-skills
+```
+
+Builds a **repo-local `project-review` skill** for a codebase you contribute to, distilled from
+its maintainers' review history, docs and enforced configs — so a first pass carries that
+project's preferences before a human reads your diff.
+
+The premise: a competent reviewer produces general good practice unprompted, so distilling it
+buys nothing. Every candidate rule has to pass one test — *would a reviewer who has never seen
+this project produce this finding anyway?* — and the ones that survive are the delta: the
+invariants that make a reasonable-looking change wrong, the places the project deliberately does
+what a reviewer would flag, and the proposals that were argued and rejected.
+
+### How it works
+
+1. **Discover** what the repo exposes — configs, `CONTRIBUTING`, ADRs, issue and PR history —
+   and ask which sources to use.
+2. **Harvest** the maintainers' writing into a JSONL corpus, including inline review comments
+   and PR review bodies, via a script that ships with the generated skill for refreshing later.
+3. **Distil** it in parallel sub-agents, one per chronological chunk, each returning imperative
+   rules with a severity, a remedy and a verbatim quote.
+4. **Verify** every quote against the corpus by machine, then strip the quotes — a rule that
+   loses its quote was invented, not distilled.
+5. **Generate** the review skill, install it, and trial it on a real change.
+
+The generated skill reviews in three passes: once with no project context, once with the
+principles loaded, and once attacking its own findings — so what the project adds is visible in
+every review instead of buried among findings anyone would have made.
+
 ## Licence
 
 MIT — see [LICENCE.md](LICENCE.md).

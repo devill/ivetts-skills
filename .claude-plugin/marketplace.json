@@ -48,6 +48,28 @@
         "name": "Ivett Ördög",
         "url": "https://github.com/devill"
       }
+    },
+    {
+      "name": "build-project-review",
+      "displayName": "Build project review",
+      "description": "Distils a project's review history, docs and enforced configs into a repo-local review skill that carries only the delta — where its maintainers do not want what a default reviewer would ask for.",
+      "source": "./",
+      "skills": [
+        "./skills/build-project-review"
+      ],
+      "strict": false,
+      "category": "code-quality",
+      "tags": [
+        "code-review",
+        "pull-requests",
+        "open-source",
+        "conventions",
+        "github"
+      ],
+      "author": {
+        "name": "Ivett Ördög",
+        "url": "https://github.com/devill"
+      }
     }
   ]
 }
