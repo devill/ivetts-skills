@@ -34,11 +34,20 @@ clone.
 Treat the output as a starting point for identifying design improvements, never as the answer.
 The numbers say where change lands; only the code says why.
 
-A design change is worth making when it moves the codebase toward this: **a file changes for
-one reason, and making a change requires understanding only a small part of the codebase.**
-So for whatever the numbers surface, the question to answer in the code is where the
-inappropriate coupling sits that keeps bringing you back to this file — and whether the
-dependencies at that seam point the right way, or want an interface to invert them.
+The thinking tool here is domain-driven design. A hotspot is usually a concept the domain
+already has a name for, scattered across conditionals, flags, parameters and layers instead of
+living in one named thing, and the improvement is that concept made explicit. Churn and
+coupling say where to look and never what to build, so the analysis is not finished until the
+code gives up a name.
+
+Read the recurring commits and ask what they keep talking about: the language the people
+asking for the changes use, the rules that have to hold together, one word meaning different
+things in different parts of the system, a concept currently carried by a boolean or a switch.
+The improvement is that concept given a name, a home and its own rules — after which the
+change that keeps coming back lands in one place, and the dependencies point at it.
+
+"Split this file", "invert this dependency", "extract a helper" name a shape, not a concept:
+that is the numbers restated, and means the code has not been read deeply enough yet.
 
 Read every candidate in the code before choosing anything, and write down what you found; a
 dismissal cites code. Corroborate the pick against what the metrics cannot see — what the
@@ -56,8 +65,9 @@ Never a plan, never a list of options.
 
 Per recommendation — title, long-term goal, smallest meaningful step, why this step first,
 step done when, evidence, corroboration — plus the candidates compared, recommended or not.
-The goal and the step are what the reader acts on and lead the page; everything else supports
-them. Add a before/after diagram only where it makes the change easier to understand.
+The title names the concept being made explicit, in the domain's words, not the file being
+changed. The goal and the step are what the reader acts on and lead the page; everything else
+supports them. Add a before/after diagram only where it makes the change easier to understand.
 
 Then render the report. Re-run with `--json analysis.json` **using the same flags**, write
 `rec.json`, and:
